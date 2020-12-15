@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AgregarContacto">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/agregarusuario" />
+
+    <EditText
+        android:id="@+id/ET_nombre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <EditText
+        android:id="@+id/ET_telefono"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Telefono"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ET_nombre" />
+
+    <EditText
+        android:id="@+id/ET_direccion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Direccion"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ET_telefono" />
+
+    <EditText
+        android:id="@+id/ET_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ET_direccion" />
+
+    <ImageView
+        android:id="@+id/img_descartar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="16dp"
+        android:onClick="descarta"
+        app:layout_constraintStart_toStartOf="@+id/ET_email"
+        app:layout_constraintTop_toBottomOf="@+id/ET_email"
+        app:srcCompat="@drawable/descartarusuario" />
+
+    <ImageView
+        android:id="@+id/img_guardar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="92dp"
+        app:layout_constraintEnd_toEndOf="@+id/ET_email"
+        app:layout_constraintTop_toBottomOf="@+id/ET_email"
+        app:srcCompat="@drawable/aprovarusuario" />
+
+    <TextView
+        android:id="@+id/msgDescartar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Descartar"
+        app:layout_constraintEnd_toEndOf="@+id/img_descartar"
+        app:layout_constraintStart_toStartOf="@+id/img_descartar"
+        app:layout_constraintTop_toBottomOf="@+id/img_descartar" />
+
+    <TextView
+        android:id="@+id/msgGuardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Guardar"
+        app:layout_constraintEnd_toEndOf="@+id/img_guardar"
+        app:layout_constraintStart_toStartOf="@+id/img_guardar"
+        app:layout_constraintTop_toBottomOf="@+id/img_guardar" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
