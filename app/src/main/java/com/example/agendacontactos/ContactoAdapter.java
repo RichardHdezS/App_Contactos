@@ -40,14 +40,20 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.ViewHo
 
         holder.picEdit.setTag("editado");
         holder.picDelete.setTag("eliminado");
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+        holder.picEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if(holder.picEdit.isPressed()){
-                    Toast.makeText(context, "Editado el contacto" + position, Toast.LENGTH_LONG).show();
+                if(holder.picEdit.getTag() == "editado"){
+                    Toast.makeText(context, "contado Editado " + position, Toast.LENGTH_LONG).show();
                 }
-                if(holder.picDelete.isPressed()){
-                    Toast.makeText(context, "Eliminado el contacto" + position, Toast.LENGTH_LONG).show();
+            }
+        });
+        holder.picDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(holder.picDelete.getTag() == "eliminado"){
+                    Toast.makeText(context, "contado eliminado " + position, Toast.LENGTH_LONG).show();
                 }
             }
         });
