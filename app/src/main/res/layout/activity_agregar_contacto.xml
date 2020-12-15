@@ -92,7 +92,8 @@
         android:layout_marginEnd="92dp"
         app:layout_constraintEnd_toEndOf="@+id/ET_email"
         app:layout_constraintTop_toBottomOf="@+id/ET_email"
-        app:srcCompat="@drawable/aprovarusuario" />
+        app:srcCompat="@drawable/aprovarusuario"
+        android:onClick="guardar"/>
 
     <TextView
         android:id="@+id/msgDescartar"

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -15,8 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-RecyclerView cRecyclerView;
-ContactoAdapter adapter;
+    RecyclerView cRecyclerView;
+    ContactoAdapter adapter;
+    ArrayList<Contacto> listaContactos =new ArrayList<Contacto>();
+    ArrayList<String> myLista =new ArrayList<String>();
+    Bundle extras;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,15 +41,23 @@ ContactoAdapter adapter;
     }
 
     public List<Contacto> crearContacto(){
-        return new ArrayList<Contacto>(){
-            {
-                add(new Contacto("Ricardo Hdez", "453123123", "Las palmas", "richard@gmial.com"));
-                add(new Contacto("Gil", "453123547", "Las lomas", "gil@gmial.com"));
-                add(new Contacto("Fermin", "453582123", "lazaro", "fermin@gmial.com"));
-                add(new Contacto("Andrea", "453157823", "Las lomas", "pupi@gmial.com"));
-                add(new Contacto("Maria Jose", "411823123", "El Ransho", "marijo@gmial.com"));
+
+        if(!getIntent().getExtras().isEmpty())
+        {
+            extras = this.getIntent().getExtras();
+            myLista=extras.getStringArrayList("NuevaLista");
+            Log.i("solucion", "El tamaño de la lista en Main es "+myLista.size());
+            for(int i=0; i<myLista.size(); i++){
+                String[] fragmentos =myLista.get(i).split(",");
+                listaContactos.add(new Contacto(fragmentos[0], fragmentos[1],
+                        fragmentos[2], fragmentos[3]));
             }
-        };
+            return listaContactos;
+        }
+        else{
+            return listaContactos;
+        }
+
     }
 
     //importamos un menu en la barra superior
@@ -58,7 +71,9 @@ ContactoAdapter adapter;
         switch (item.getItemId()){
             case R.id.btnAdd:
                 Intent intentNuevoContacto = new Intent(this, AgregarContacto.class);
+                intentNuevoContacto.putExtra("lista", myLista);
                 startActivity(intentNuevoContacto);
+                finish();
 
         }
         return super.onOptionsItemSelected(item);
