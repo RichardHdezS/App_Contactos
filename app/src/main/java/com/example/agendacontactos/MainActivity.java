@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     public List<Contacto> crearContacto(){
 
-        if(!getIntent().getExtras().isEmpty())
+        final Intent intent = this.getIntent();//obtenemos el intent actual
+        if(intent.hasExtra("NuevaLista"))
         {
             extras = this.getIntent().getExtras();
             myLista=extras.getStringArrayList("NuevaLista");

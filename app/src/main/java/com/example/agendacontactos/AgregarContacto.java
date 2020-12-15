@@ -32,9 +32,18 @@ public class AgregarContacto extends AppCompatActivity {
     }
 
     public void descarta(View view) {
-        /*Intent intentAllcontactos = new Intent(this, MainActivity.class);
-        startActivity(intentAllcontactos);*/
-        finish();
+        Intent intentAllcontactos = new Intent(this, MainActivity.class);
+        final Intent intent = this.getIntent();//obtenemos el intent actual
+        if(intent.hasExtra("lista"))//verificamos si en el intent actual existe un extras llama lista
+        {
+            extras=getIntent().getExtras();//obtenemos los parametros en extras
+            myLista= extras.getStringArrayList("lista");//obtenemos la lista de arrays
+            intentAllcontactos.putExtra("NuevaLista",myLista);//al cancelar la opcion de
+            //registarr un contacto, tertonamos la lista que se envia a este activity para que se mantengan
+            //los contactos
+        }
+        startActivity(intentAllcontactos);//invoco al activity main
+
     }
 
     public void guardar(View view) {
