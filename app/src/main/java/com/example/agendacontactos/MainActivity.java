@@ -11,11 +11,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements itemListener{
     RecyclerView cRecyclerView;
     ContactoAdapter adapter;
     ArrayList<Contacto> listaContactos =new ArrayList<Contacto>();
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         cRecyclerView.addItemDecoration(dividerItemDecoration);
 
         cRecyclerView.setHasFixedSize(true);//permitimos que todos los items sean del mismo tamaño
-        adapter=new ContactoAdapter(crearContacto(), this);
+        adapter=new ContactoAdapter(crearContacto(), this, this);
         cRecyclerView.setAdapter(adapter);
     }
 
@@ -78,5 +79,16 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(int posicion, char accion) {
+        if(accion == 'E'){
+            Toast.makeText(this, "Posicion Editada "+posicion, Toast.LENGTH_SHORT).show();
+            Log.i("lucha", myLista.get(posicion));
+        }
+        else {
+            Toast.makeText(this, "Posicion Eliminada"+posicion, Toast.LENGTH_SHORT).show();
+        }
     }
 }

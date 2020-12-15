@@ -15,10 +15,11 @@ import java.util.List;
 public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.ViewHolder>{
     List<Contacto> listaContactos;
     Context context;
-
-    public ContactoAdapter(List<Contacto> listaContactos, Context context) {
+    itemListener itemListener;
+    public ContactoAdapter(List<Contacto> listaContactos, Context context, itemListener itemListener) {
         this.listaContactos = listaContactos;
         this.context = context;
+        this.itemListener=itemListener;
     }
 
     @NonNull
@@ -27,7 +28,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.ViewHo
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.item_contacto, parent, false);
             //ViewHolder viewHolder = new ViewHolder(view);
-        return new ViewHolder(view);
+        return new ViewHolder(view, itemListener);
     }
 
     @Override
@@ -40,23 +41,6 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.ViewHo
 
         holder.picEdit.setTag("editado");
         holder.picDelete.setTag("eliminado");
-
-        holder.picEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(holder.picEdit.getTag() == "editado"){
-                    Toast.makeText(context, "contado Editado " + position, Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        holder.picDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(holder.picDelete.getTag() == "eliminado"){
-                    Toast.makeText(context, "contado eliminado " + position, Toast.LENGTH_LONG).show();
-                }
-            }
-        });
     }
 
     @Override
@@ -67,7 +51,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView nombre, telefono, direccion, email;
         ImageView picContact, picDelete, picEdit;
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, final itemListener itemListener) {
             super(itemView);
             nombre=itemView.findViewById(R.id.tvC_nombre);
             telefono=itemView.findViewById(R.id.tvC_telefono);
@@ -76,6 +60,18 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.ViewHo
             picContact=itemView.findViewById(R.id.img_Contacto);
             picEdit=itemView.findViewById(R.id.img_EditContact);
             picDelete=itemView.findViewById(R.id.img_DeleteContact);
+            itemView.findViewById(R.id.img_DeleteContact).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemListener.onClick(getAdapterPosition(), 'D');
+                }
+            });
+            itemView.findViewById(R.id.img_EditContact).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemListener.onClick(getAdapterPosition(), 'E');
+                }
+            });
         }
     }
 }
