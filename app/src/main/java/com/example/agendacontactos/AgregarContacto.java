@@ -3,6 +3,7 @@ package com.example.agendacontactos;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,7 @@ public class AgregarContacto extends AppCompatActivity {
     Bundle extras;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setTitle("Agregar Contacto");
         setContentView(R.layout.activity_agregar_contacto);

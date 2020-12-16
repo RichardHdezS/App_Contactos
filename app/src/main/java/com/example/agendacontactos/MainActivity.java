@@ -84,11 +84,18 @@ public class MainActivity extends AppCompatActivity implements itemListener{
     @Override
     public void onClick(int posicion, char accion) {
         if(accion == 'E'){
-            Toast.makeText(this, "Posicion Editada "+posicion, Toast.LENGTH_SHORT).show();
-            Log.i("lucha", myLista.get(posicion));
+            Intent intentEditaContacto = new Intent(this, EditarContacto.class);
+            intentEditaContacto.putExtra("lista", myLista);
+            intentEditaContacto.putExtra("posicion", posicion);
+            startActivity(intentEditaContacto);
+            finish();
         }
         else {
-            Toast.makeText(this, "Posicion Eliminada"+posicion, Toast.LENGTH_SHORT).show();
+            myLista.remove(posicion);//eliminamos de lista e array
+            listaContactos.remove(posicion);//y eliminamos de la lista de objetos
+            adapter=new ContactoAdapter(listaContactos, this, this);//invocamos el adapter
+            cRecyclerView.setAdapter(adapter);
+            Toast.makeText(this, "Eliminado Exitosamente", Toast.LENGTH_SHORT).show();
         }
     }
 }
